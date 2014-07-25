@@ -5,14 +5,14 @@
 
 #Function makeCacheMatrix create an object containig a list of functions: set, get, setInv, getInv.
 #Its argument is the matrix to be inverted, if its inverse has not been solve previuosy.
-#if you want set cacheMat for a particular matrix to be inverted, run:
+#The cache object can be assigned to a variable "cacheMat" for a particular matrix to be inverted, by running:
 #A<-matrix(1:4,nrow=2,ncol=2) 2x2 matrix or any matrix
 #cacheMat<-makeCacheMatrix(A)
-#Function "set" assings to x the value of the matrix A and the initial value of m (by using operator <<-) on the "parent environment".
-#Function "get" updates the value of x on cacheMat$get
-#Function "setInv" assings to m the value of inverse matrix (to be solved in the second function cacheSolve).
+#Function "set" assings the value of the matrix A to x, and the initial value of m (by using operator <<-) on the "parent environment".
+#Function "get" updates the value of x on cacheMat$get .
+#Function "setInv" assings the value of the inverse matrix (to be solved in the second function cacheSolve) to m.
 #Note that "setInv" has one argument: the obtained  inverse matrix.
-#Function "getInv" updates the value of the inverse on cacheMat$getInv 
+#Function "getInv" updates the value of the variable m (the inverse) on cacheMat$getInv .
 #Finally, the function list, creates a list of named values into the environment in which they are evaluated.
 
 makeCacheMatrix <- function(x = matrix()) {
@@ -54,9 +54,8 @@ cacheSolve <- function(x) {
   ## Return a matrix that is the inverse of 'x'
 }
 
-#You can run the code:
-#source("makeMatrix.R")
-#source("solveMatrix.R")
+#You can run the code, from the appropiate directory:
+#source"cacheMatrix.R"()
 
 #A<-matrix(1:4,nrow=2,ncol=2) #set the matrix to be inverted (be sure it is invertible)
 #cacheMat<-makeCacheMatrix(A)
@@ -65,4 +64,4 @@ cacheSolve <- function(x) {
 
 #Note that each time you run InverseMatrix<-cacheSolve(cacheMat), the function return the inverse of the matrix in cacheMat$get().
 #In this case you see the message "getting cached data".
-#If you can set again a new matriz, e.g B, you must run at first cacheMat<-makeCacheMatrix(B)
+#If you can set again a new matrix to be inverted, e.g B, you must run at first cacheMat<-makeCacheMatrix(B)
